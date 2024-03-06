@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.OutputSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -22,7 +20,6 @@ public class RobotContainer {
     /* Controllers */
     private final Joystick driver = new Joystick(0);
 
-    ArmSubsystem armSubsystem = new ArmSubsystem(9,11);
     IntakeSubsystem intakeSubsystem = new IntakeSubsystem(9, 12);
 
     /* Drive Controls */
@@ -69,8 +66,8 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-        moveUp.onTrue(new InstantCommand(() -> ArmSubsystem.moveUp()));
-        moveDown.onTrue(new InstantCommand(() -> ArmSubsystem.moveDown()));
+        moveUp.onTrue(new MoveArm(MoveArm.Direction.UP));
+        moveDown.whileTrue(new MoveArm(MoveArm.Direction.DOWN));
         intake.onTrue(new InstantCommand(() -> IntakeSubsystem.intake()));
         startOutput.onTrue(new InstantCommand(() -> OutputSubsystem.startOutput()));
         

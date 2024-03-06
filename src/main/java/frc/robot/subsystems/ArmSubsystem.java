@@ -6,18 +6,17 @@ import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
 import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Timer;
+import frc.robot.Constants;
 
 public class ArmSubsystem {
-    private static TalonSRX armMotor;
-    private static DigitalInput lowerLimitSwitch;
-    private static Timer timer;
+    private static ArmSubsystem _instance;
+
+    private TalonSRX armMotor;
+    
 
     // Constructor
-    public ArmSubsystem(int talonID, int limitSwitchChannel) {
-        armMotor = new TalonSRX(9); // Initialize the Talon SRX motor controller
-        lowerLimitSwitch = new DigitalInput(12); // Initialize the limit switch
-        timer = new Timer(); // Initialize the timer
+    private ArmSubsystem() {
+        armMotor = new TalonSRX(Constants.ARM_MOTOR_ID); // Initialize the Talon SRX motor controller
         configureTalonSRX(); // Configure Talon SRX
     }
 
@@ -27,36 +26,32 @@ public class ArmSubsystem {
         //talonSRX.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
         // Configure limit switch
-        armMotor.configForwardLimitSwitchSource(
+        armMotor.configReverseLimitSwitchSource(
             LimitSwitchSource.FeedbackConnector, // Use limit switch connected to the feedback connector
             LimitSwitchNormal.NormallyOpen,      // Assume the limit switch is normally open
             0);                                   // Timeout in milliseconds (0 for no timeout)
     }
 
-    // Method to move the arm up for 2 seconds
-    public static void moveUp() {
-        // Start the timer
-        timer.reset();
-        timer.start();
+    public static ArmSubsystem getInstance(){
+		if(_instance == null)
+			_instance = new ArmSubsystem();
+		
+		return _instance;
+	}
 
-        // Move the arm up for 2 seconds
-        while (timer.get() < 2.0) { // Move for 2 seconds
-            armMotor.set(ControlMode.PercentOutput, 0.5); // Example: Set motor to 50% output
+    // Method to move the arm up for 2 seconds
+    public void moveUp() {
+            armMotor.set(ControlMode.PercentOutput, 1); // Example: Set motor to 50% output
         }
 
-        // Stop the motor after 2 seconds
-        armMotor.set(ControlMode.PercentOutput, 0.0);
-    }
+        
 
     // Method to move the arm down until the limit switch is triggered
-    public static void moveDown() {
-        // Check if limit switch is not triggered
-        if (!lowerLimitSwitch.get()) {
-            // Move the arm down
-            armMotor.set(ControlMode.PercentOutput, -0.5); // Example: Set motor to -50% output
-        } else {
-            // Stop the motor if the limit switch is triggered
-            armMotor.set(ControlMode.PercentOutput, 0.0);
-        }
+    public void moveDown() {
+            armMotor.set(ControlMode.PercentOutput, -1); // Example: Set motor to -50% output
+        } 
+    public void stopArm(){
+        armMotor.set(ControlMode.PercentOutput, 0.0);
     }
+    
 }

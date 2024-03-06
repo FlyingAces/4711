@@ -15,7 +15,15 @@ import frc.lib.util.SwerveModuleConstants;
 public final class Constants {
     public static final double stickDeadband = 0.05;
     public static final double turnMult = 0.3;
-
+    //motor for the climber
+    public static final int  ARM_MOTOR_ID = 14;
+    public static final double AUTO_UP_TIME = 6;
+    
+    //motor for intake
+    public static final int INTAKE_MOTOR_CAN_ID = 13;
+    //limit switches
+    public static final int LOWER_LIMIT_SWITCH_CHANNEL = 11;
+    public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 12;
     public static final class Swerve {
         public static final int pigeonID = 1;
         public static final boolean invertGyro = false; // Always ensure Gyro is CCW+ CW-
@@ -131,13 +139,7 @@ public final class Constants {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
-        //motor for the climber
-        public static final int  ARM_MOTOR_ID = 9;
-        //motor for intake
-        public static final int INTAKE_MOTOR_CAN_ID = 13;
-        //limit switches
-        public static final int LOWER_LIMIT_SWITCH_CHANNEL = 11;
-        public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 12;
+        
     }
 
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
