@@ -6,10 +6,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.OutputSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -21,6 +22,9 @@ public class RobotContainer {
     /* Controllers */
     private final Joystick driver = new Joystick(0);
 
+    ArmSubsystem armSubsystem = new ArmSubsystem(9,11);
+    IntakeSubsystem intakeSubsystem = new IntakeSubsystem(9, 12);
+
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
     private final int strafeAxis = XboxController.Axis.kLeftX.value;
@@ -28,7 +32,13 @@ public class RobotContainer {
 
     /* Driver Buttons */
     private final JoystickButton zeroGyro = new JoystickButton(driver, XboxController.Button.kY.value);
-    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton robotCentric = new JoystickButton(driver, XboxController.Button.kX.value);
+
+    private final JoystickButton moveUp = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+    private final JoystickButton moveDown = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
+
+    private final JoystickButton intake = new JoystickButton(driver, XboxController.Button.kA.value);
+    private final JoystickButton startOutput = new JoystickButton(driver, XboxController.Button.kB.value);
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
@@ -59,7 +69,13 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
+        moveUp.onTrue(new InstantCommand(() -> ArmSubsystem.moveUp()));
+        moveDown.onTrue(new InstantCommand(() -> ArmSubsystem.moveDown()));
+        intake.onTrue(new InstantCommand(() -> IntakeSubsystem.intake()));
+        startOutput.onTrue(new InstantCommand(() -> OutputSubsystem.startOutput()));
+        
     }
+    
 
     /**
      * Use this to pass the autonomous command to the main {@link Robot} class.

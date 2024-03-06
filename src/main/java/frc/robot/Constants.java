@@ -9,7 +9,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
-import frc.lib.util.COTSFalconSwerveConstants;
+//import frc.lib.util.COTSFalconSwerveConstants;
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
@@ -131,6 +131,13 @@ public final class Constants {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
+        //motor for the climber
+        public static final int  ARM_MOTOR_ID = 9;
+        //motor for intake
+        public static final int INTAKE_MOTOR_CAN_ID = 13;
+        //limit switches
+        public static final int LOWER_LIMIT_SWITCH_CHANNEL = 11;
+        public static final int INTAKE_LIMIT_SWITCH_CHANNEL = 12;
     }
 
     public static final class AutoConstants { //TODO: The below constants are used in the example auto, and must be tuned to specific robot
