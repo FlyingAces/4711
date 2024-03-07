@@ -29,7 +29,11 @@ public class ArmSubsystem {
         armMotor.configReverseLimitSwitchSource(
             LimitSwitchSource.FeedbackConnector, // Use limit switch connected to the feedback connector
             LimitSwitchNormal.NormallyOpen,      // Assume the limit switch is normally open
-            0);                                   // Timeout in milliseconds (0 for no timeout)
+            0);   
+        armMotor.configForwardLimitSwitchSource(
+            LimitSwitchSource.FeedbackConnector, // Use limit switch connected to the feedback connector
+            LimitSwitchNormal.NormallyOpen,      // Assume the limit switch is normally open
+            0);                                // Timeout in milliseconds (0 for no timeout)
     }
 
     public static ArmSubsystem getInstance(){
@@ -41,14 +45,14 @@ public class ArmSubsystem {
 
     // Method to move the arm up for 2 seconds
     public void moveUp() {
-            armMotor.set(ControlMode.PercentOutput, 1); // Example: Set motor to 50% output
+            armMotor.set(ControlMode.PercentOutput, 1); // Example: Set motor to 100% output
         }
 
         
 
     // Method to move the arm down until the limit switch is triggered
     public void moveDown() {
-            armMotor.set(ControlMode.PercentOutput, -1); // Example: Set motor to -50% output
+            armMotor.set(ControlMode.PercentOutput, -1); // Example: Set motor to -100% output
         } 
     public void stopArm(){
         armMotor.set(ControlMode.PercentOutput, 0.0);

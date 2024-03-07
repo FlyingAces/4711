@@ -13,7 +13,7 @@ import edu.wpi.first.math.util.Units;
 import frc.lib.util.SwerveModuleConstants;
 
 public final class Constants {
-    public static final double stickDeadband = 0.05;
+    public static final double stickDeadband = 0.1;
     public static final double turnMult = 0.3;
     //motor for the climber
     public static final int  ARM_MOTOR_ID = 14;

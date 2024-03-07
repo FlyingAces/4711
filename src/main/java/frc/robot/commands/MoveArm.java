@@ -21,11 +21,8 @@ public class MoveArm extends Command {
     }
     
     private Direction _dir;
-    private Timer _timer;
-
     public MoveArm(Direction dir){
         _dir = dir;
-        _timer = new Timer();
     }
 
     @Override
@@ -33,7 +30,6 @@ public class MoveArm extends Command {
         switch(_dir) {
             case UP:
                 ArmSubsystem.getInstance().moveUp();
-                _timer.restart();
                 break;
             case DOWN:
                 ArmSubsystem.getInstance().moveDown();
@@ -44,16 +40,15 @@ public class MoveArm extends Command {
     @Override
     public void end(boolean interrupted){
         ArmSubsystem.getInstance().stopArm();
-        _timer.stop();
     }
 
-    @Override
-    public boolean isFinished(){
-        switch (_dir) {
-            case UP:
-                return _timer.get() >= Constants.AUTO_UP_TIME;
-        }
+   // @Override
+    //public boolean isFinished(){
+   //     switch (_dir) {
+    //        case UP:
+    //            return _timer.get() >= Constants.AUTO_UP_TIME;
+    //    }
 
-        return false;
-    }
+     //   return false;
+   // }
 }

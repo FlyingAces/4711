@@ -20,7 +20,7 @@ public class RobotContainer {
     /* Controllers */
     private final Joystick driver = new Joystick(0);
 
-    IntakeSubsystem intakeSubsystem = new IntakeSubsystem(9, 12);
+    //IntakeSubsystem intakeSubsystem = new IntakeSubsystem(9, 12);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -66,11 +66,9 @@ public class RobotContainer {
     private void configureButtonBindings() {
         /* Driver Buttons */
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
-        moveUp.onTrue(new MoveArm(MoveArm.Direction.UP));
+        moveUp.whileTrue(new MoveArm(MoveArm.Direction.UP));
         moveDown.whileTrue(new MoveArm(MoveArm.Direction.DOWN));
-        intake.onTrue(new InstantCommand(() -> IntakeSubsystem.intake()));
-        startOutput.onTrue(new InstantCommand(() -> OutputSubsystem.startOutput()));
-        
+        //intake.onTrue(new InstantCommand(() -> IntakeSubsystem.intake()));        
     }
     
 
