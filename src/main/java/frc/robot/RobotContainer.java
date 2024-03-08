@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import frc.robot.commands.Intake;
+
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -19,8 +21,6 @@ import frc.robot.subsystems.*;
 public class RobotContainer {
     /* Controllers */
     private final Joystick driver = new Joystick(0);
-
-    //IntakeSubsystem intakeSubsystem = new IntakeSubsystem(9, 12);
 
     /* Drive Controls */
     private final int translationAxis = XboxController.Axis.kLeftY.value;
@@ -35,7 +35,7 @@ public class RobotContainer {
     private final JoystickButton moveDown = new JoystickButton(driver, XboxController.Button.kLeftBumper.value);
 
     private final JoystickButton intake = new JoystickButton(driver, XboxController.Button.kA.value);
-    private final JoystickButton startOutput = new JoystickButton(driver, XboxController.Button.kB.value);
+    private final JoystickButton Output = new JoystickButton(driver, XboxController.Button.kB.value);
 
     /* Subsystems */
     private final Swerve s_Swerve = new Swerve();
@@ -68,7 +68,8 @@ public class RobotContainer {
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
         moveUp.whileTrue(new MoveArm(MoveArm.Direction.UP));
         moveDown.whileTrue(new MoveArm(MoveArm.Direction.DOWN));
-        //intake.onTrue(new InstantCommand(() -> IntakeSubsystem.intake()));        
+        intake.whileTrue(new Intake(Intake.Direction.IN));
+        Output.whileTrue(new Intake(Intake.Direction.OUT));       
     }
     
 
