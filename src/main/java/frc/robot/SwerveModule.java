@@ -95,7 +95,7 @@ public class SwerveModule {
     }
 
     public void resetToAbsolute(){
-        double absolutePosition = Conversions.degreesToTalon(waitForCANcoder().getDegrees() - angleOffset.getDegrees(), Constants.Swerve.angleGearRatio);
+        double absolutePosition = Conversions.degreesToTalon(waitForCANcoder().plus(angleOffset).getDegrees(), Constants.Swerve.angleGearRatio);
         mAngleMotor.setPosition(absolutePosition);
     }
 
@@ -105,7 +105,7 @@ public class SwerveModule {
 
     private void configAngleMotor(){
         mAngleMotor.getConfigurator().apply(Robot.ctreConfigs.swerveAngleFXConfig);
-        //resetToAbsolute();
+        resetToAbsolute();
     }
 
     private void configDriveMotor(){

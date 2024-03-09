@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.autos.*;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
-import frc.robot.commands.Intake;
 
 
 /**
@@ -84,6 +83,11 @@ public class RobotContainer {
     }
 
     public void zeroModuleAngles(){
-        s_Swerve.resetAngles();
+        // s_Swerve.resetAngles();
     }
+
+    public void disabled() {
+        s_Swerve.disabled();
+    }
+
 }

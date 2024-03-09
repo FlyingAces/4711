@@ -31,7 +31,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    m_robotContainer.zeroModuleAngles();
+    // m_robotContainer.zeroModuleAngles();
   }
 
   /**
@@ -55,7 +55,9 @@ public class Robot extends TimedRobot {
   public void disabledInit() {}
 
   @Override
-  public void disabledPeriodic() {}
+  public void disabledPeriodic() {
+    m_robotContainer.disabled();
+  }
 
 
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */

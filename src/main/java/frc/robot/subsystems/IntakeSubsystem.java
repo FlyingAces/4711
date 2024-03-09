@@ -24,7 +24,7 @@ public class IntakeSubsystem{
 
         // Configure limit switch
           
-        intakeMotor.configReverseLimitSwitchSource(
+        intakeMotor.configForwardLimitSwitchSource(
             LimitSwitchSource.FeedbackConnector, // Use limit switch connected to the feedback connector
             LimitSwitchNormal.NormallyOpen,      // Assume the limit switch is normally open
             0);                                // Timeout in milliseconds (0 for no timeout)
@@ -46,7 +46,7 @@ public class IntakeSubsystem{
      public void Output() {
         // Check if limit switch is not pressed before starting intake
         
-        intakeMotor.set(ControlMode.PercentOutput, -1); // Example: Set motor to -50% output
+        intakeMotor.set(ControlMode.PercentOutput, -0.65); // Example: Set motor to -50% output
                 
     }
     public void stopArmI(){
