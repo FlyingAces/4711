@@ -14,7 +14,7 @@ public class simpleAuto  extends SequentialCommandGroup {
     addCommands(
         
         new InstantCommand(() -> s_Swerve.drive(new Translation2d(1, 0), 0, true, true)),
-        new WaitCommand(1),
+        new WaitCommand(2.5),
         new InstantCommand(() -> s_Swerve.drive(new Translation2d(.5, 0), 0, true, true)),
         new WaitCommand(2),
         new InstantCommand(() -> s_Swerve.drive(new Translation2d(0, 0), 0, true, true))

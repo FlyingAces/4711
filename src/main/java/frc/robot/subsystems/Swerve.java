@@ -46,15 +46,15 @@ public class Swerve extends SubsystemBase {
         SwerveModuleState[] swerveModuleStates =
             Constants.Swerve.swerveKinematics.toSwerveModuleStates(
                 fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
-                                    translation.getX(), 
-                                    translation.getY(), 
+                                    translation.getX() * 0.35, 
+                                    translation.getY() * 0.35, 
                                     rotation, 
                                     getPose().getRotation()
                                 )
                                 : new ChassisSpeeds(
                                     translation.getX(), 
                                     translation.getY(), 
-                                    rotation * 0.75)
+                                    rotation)
                                 );
         SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
 
