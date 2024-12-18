@@ -53,7 +53,7 @@ public class ArmSubsystem {
     // Method to move the arm down until the limit switch is triggered
     public void moveDown() {
             armMotor.set(ControlMode.PercentOutput, -1); // Example: Set motor to -100% output
-        } 
+        }  
     public void stopArm(){
         armMotor.set(ControlMode.PercentOutput, 0.0);
     }
