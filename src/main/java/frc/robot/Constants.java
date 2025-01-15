@@ -17,7 +17,7 @@ public final class Constants {
     public static final double turnMult = 0.3;
     //motor for the climber
     public static final int  ARM_MOTOR_ID = 14;
-    public static final double AUTO_UP_TIME = 6;
+   // public static final double AUTO_UP_TIME = 6;
     
     //motor for intake
     public static final int INTAKE_MOTOR_CAN_ID = 13;
